@@ -1,0 +1,17 @@
+{
+  "name": "melosys-web-mock",
+  "version": "0.0.0",
+  "description": "express mock server",
+  "author": "Are Bjølseth",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "moment": "^2.19.2",
+    "semver": "^5.4.1",
+    "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "amock": "node scripts/mock_api_server.js",
+    "semver": "node_modules/semver/bin/semver"
+  }
+}

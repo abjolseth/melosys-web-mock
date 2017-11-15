@@ -9,6 +9,9 @@
 # production
 /build
 
+# scripts
+/scripts/db
+
 # misc
 .idea
 !.idea/runConfigurations/
@@ -23,3 +26,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+

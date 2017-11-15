@@ -8,6 +8,7 @@
     "express": "^4.16.2",
     "moment": "^2.19.2",
     "pouchdb": "^6.3.4",
+    "pouchdb-upsert": "^2.2.0",
     "semver": "^5.4.1",
     "underscore": "^1.8.3"
   },

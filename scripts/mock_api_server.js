@@ -1,8 +1,17 @@
 /* eslint-disable */
 const express = require('express');
 var PouchDB = require('pouchdb');
-var pouch = new PouchDB('melosys');
-pouch.put({
+
+// Add "upsert" and "putIfNotExists" plugin from https://github.com/pouchdb/upsert
+PouchDB.plugin(require('pouchdb-upsert'));
+
+var LevelDB = PouchDB.defaults({
+  prefix: `${process.cwd()}/scripts/db/`
+});
+
+
+var db = new LevelDB('melosys');
+db.putIfNotExists('mydoc', {
   _id: 'mydoc',
   title: 'Heroes'
 }).then(function (response) {
@@ -34,7 +43,7 @@ const port = process.env.PORT || 3002;
 const router = express.Router();
 
 router.get('/', function(req, res) {
-	pouch.get('mydoc').then(function (doc) {
+	db.get('mydoc').then(function (doc) {
     return res.json(doc);
   }).catch(function (err) {
     console.log(err);

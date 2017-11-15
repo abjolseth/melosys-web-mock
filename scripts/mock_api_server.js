@@ -1,5 +1,16 @@
 /* eslint-disable */
 const express = require('express');
+var PouchDB = require('pouchdb');
+var pouch = new PouchDB('melosys');
+pouch.put({
+  _id: 'mydoc',
+  title: 'Heroes'
+}).then(function (response) {
+  // handle response
+}).catch(function (err) {
+  console.log(err);
+});
+
 const _ = require('underscore');
 const app = express();
 const bodyParser = require('body-parser');
@@ -23,10 +34,11 @@ const port = process.env.PORT || 3002;
 const router = express.Router();
 
 router.get('/', function(req, res) {
-	const data = {
-		hello: 'World'
-	};
-	return res.json(data);
+	pouch.get('mydoc').then(function (doc) {
+    return res.json(doc);
+  }).catch(function (err) {
+    console.log(err);
+  });
 });
 
 app.use(allowCrossDomain);
